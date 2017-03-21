@@ -62,11 +62,7 @@ class BaseParser(object):
         # use chardet to automatically detect the encoding text
         max_confidence, max_encoding = 0.0, None
         result = chardet.detect(text)
-        if result['encoding'] is None:
-            #wild guess if chardet fails, fixes my current pdf problem.
-            return text.decode('UTF-8', 'ignore')
-        else:
-            return text.decode(result['encoding'])
+        return text.decode(result['encoding'])
 
 
 class ShellParser(BaseParser):
